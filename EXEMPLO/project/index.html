@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal da Secretaria de Educação</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div class="logo-text">
+                        <h1>Portal de Escolas</h1>
+                        <p>Secretaria Municipal de Educação</p>
+                    </div>
+                </div>
+                <nav class="nav">
+                    <a href="#home" class="nav-link active" data-page="home">
+                        <i class="fas fa-home"></i> Início
+                    </a>
+                    <a href="#schools" class="nav-link" data-page="schools">
+                        <i class="fas fa-school"></i> Escolas
+                    </a>
+                </nav>
+                <div class="auth-section">
+                    <button id="loginBtn" class="btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Entrar
+                    </button>
+                    <div id="userInfo" class="user-info hidden">
+                        <span id="userName"></span>
+                        <button id="logoutBtn" class="btn-secondary">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Portal de Escolas</h2>
+                    <p>Gestão e transparência da rede municipal de educação</p>
+                    <div class="admin-actions hidden" id="homeAdminActions">
+                        <button class="btn-primary" onclick="openSchoolModal()">
+                            <i class="fas fa-plus"></i> Nova Escola
+                        </button>
+                        <button class="btn-secondary" onclick="exportData()">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card blue">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <h3>Total de Escolas</h3>
+                                <div class="stat-value" id="totalSchools">0</div>
+                                <div class="stat-subtitle" id="schoolsSubtitle"></div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card green">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <h3>Total de Alunos</h3>
+                                <div class="stat-value" id="totalStudents">0</div>
+                                <div class="stat-subtitle">Rede municipal</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card purple">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <h3>Funcionários</h3>
+                                <div class="stat-value" id="totalStaff">0</div>
+                                <div class="stat-subtitle">Professores e staff</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card yellow">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <h3>Taxa Média de Evasão</h3>
+                                <div class="stat-value" id="averageEvasion">0%</div>
+                                <div class="stat-subtitle">Média ponderada</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- School Status and Top Performers -->
+                <div class="content-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Status das Escolas</h3>
+                        <div class="status-list">
+                            <div class="status-item">
+                                <div class="status-indicator green"></div>
+                                <span>Ativas</span>
+                                <span class="status-count" id="activeCount">0</span>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-indicator yellow"></div>
+                                <span>Em reforma</span>
+                                <span class="status-count" id="repairCount">0</span>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-indicator red"></div>
+                                <span>Desativadas</span>
+                                <span class="status-count" id="inactiveCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-trophy"></i> Menores Taxas de Evasão</h3>
+                        <div id="topSchools" class="top-schools"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schools Page -->
+        <div id="schoolsPage" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <div>
+                        <h2>Escolas</h2>
+                        <p id="schoolCount">0 escolas encontradas</p>
+                    </div>
+                    <div class="admin-actions hidden" id="schoolsAdminActions">
+                        <button class="btn-primary" onclick="openSchoolModal()">
+                            <i class="fas fa-plus"></i> Nova Escola
+                        </button>
+                        <button class="btn-secondary" onclick="exportData()">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="card filters-card">
+                    <h3><i class="fas fa-filter"></i> Filtros</h3>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label>Bairro</label>
+                            <select id="neighborhoodFilter">
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Nível de Ensino</label>
+                            <select id="levelFilter">
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Status</label>
+                            <select id="statusFilter">
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Taxa de Evasão</label>
+                            <select id="evasionFilter">
+                                <option value="">Todos</option>
+                                <option value="low">Baixa (0-3%)</option>
+                                <option value="medium">Média (3-5%)</option>
+                                <option value="high">Alta (>5%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schools Grid -->
+                <div id="schoolsGrid" class="schools-grid"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- School Modal -->
+    <div id="schoolModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Nova Escola</h3>
+                <button class="modal-close" onclick="closeSchoolModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="schoolForm" class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nome da Escola *</label>
+                        <input type="text" id="schoolName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Diretor(a) *</label>
+                        <input type="text" id="schoolDirector" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Alunos *</label>
+                        <input type="number" id="schoolStudents" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Funcionários *</label>
+                        <input type="number" id="schoolStaff" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Taxa de Evasão (%) *</label>
+                        <input type="number" id="schoolEvasion" min="0" max="100" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Status *</label>
+                        <select id="schoolStatus" required>
+                            <option value="Ativa">Ativa</option>
+                            <option value="Em reforma">Em reforma</option>
+                            <option value="Desativada">Desativada</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bairro *</label>
+                        <select id="schoolNeighborhood" required>
+                            <option value="Centro">Centro</option>
+                            <option value="Jardim das Flores">Jardim das Flores</option>
+                            <option value="Bela Vista">Bela Vista</option>
+                            <option value="Vila Nova">Vila Nova</option>
+                            <option value="Jardim Europa">Jardim Europa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nível de Ensino *</label>
+                        <select id="schoolLevel" required>
+                            <option value="Fundamental I">Fundamental I</option>
+                            <option value="Fundamental II">Fundamental II</option>
+                            <option value="Ensino Médio">Ensino Médio</option>
+                            <option value="EJA">EJA</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Endereço *</label>
+                        <input type="text" id="schoolAddress" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="tel" id="schoolPhone">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" id="schoolEmail">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeSchoolModal()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Salvar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content small">
+            <div class="modal-header">
+                <h3>Área Administrativa</h3>
+                <button class="modal-close" onclick="closeLoginModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="loginForm" class="modal-body">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="login-info">
+                    <p><strong>Credenciais de teste:</strong></p>
+                    <p>Admin: admin@edu.sp.gov.br / admin123</p>
+                    <p>Editor: editor@edu.sp.gov.br / editor123</p>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary full-width">
+                        <i class="fas fa-sign-in-alt"></i> Entrar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
