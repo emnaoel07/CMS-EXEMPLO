@@ -473,9 +473,29 @@ function editSchool(id) {
 function viewSchoolDetails(id) {
     const school = schools.find(s => s.id === id);
     if (school) {
-        alert(`Detalhes da ${school.name}:\n\nDiretor: ${school.director}\nAlunos: ${school.students}\nFuncionários: ${school.staff}\nTaxa de Evasão: ${school.evasionRate}%\nStatus: ${school.status}\nEndereço: ${school.address}`);
+        const detailsHtml = `
+            <p><strong>Diretor:</strong> ${school.director}</p>
+            <p><strong>Alunos:</strong> ${school.students}</p>
+            <p><strong>Funcionários:</strong> ${school.staff}</p>
+            <p><strong>Taxa de Evasão:</strong> ${school.evasionRate}%</p>
+            <p><strong>Status:</strong> ${school.status}</p>
+            <p><strong>Bairro:</strong> ${school.neighborhood}</p>
+            <p><strong>Nível:</strong> ${school.level}</p>
+            <p><strong>Endereço:</strong> ${school.address}</p>
+            <p><strong>Telefone:</strong> ${school.phone || '-'}</p>
+            <p><strong>Email:</strong> ${school.email || '-'}</p>
+        `;
+        
+        document.getElementById("schoolDetailsBody").innerHTML = detailsHtml;
+        document.getElementById("detailsTitle").textContent = school.name;
+        document.getElementById("schoolDetailsModal").classList.add("active");
     }
 }
+
+function closeSchoolDetails() {
+    document.getElementById("schoolDetailsModal").classList.remove("active");
+}
+
 
 function exportData() {
     alert('Funcionalidade de exportação em desenvolvimento');

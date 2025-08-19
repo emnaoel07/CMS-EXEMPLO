@@ -246,10 +246,10 @@
                         <label>Bairro *</label>
                         <select id="schoolNeighborhood" required>
                             <option value="itatira/sede">Itatira/sede</option>
-                            <option value="Jardim das Flores">Jardim das Flores</option>
-                            <option value="Bela Vista">Bela Vista</option>
-                            <option value="Vila Nova">Vila Nova</option>
-                            <option value="Jardim Europa">Jardim Europa</option>
+                            <option value="lagoa do mato">lagoa do mato</option>
+                            <option value="cachoeira">cachoeira</option>
+                            <option value="Bandeira velho">Bandeira velho</option>
+                            <option value="Bandeira Novo">Bandeira Novo</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -317,6 +317,20 @@
             </form>
         </div>
     </div>
+<!-- School Details Modal -->
+<div id="schoolDetailsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="detailsTitle">Detalhes da Escola</h3>
+      <button class="modal-close" onclick="closeSchoolDetails()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="modal-body" id="schoolDetailsBody">
+      <!-- Conteúdo será preenchido dinamicamente -->
+    </div>
+  </div>
+</div>
 
     <script src="script.js"></script>
 </body>

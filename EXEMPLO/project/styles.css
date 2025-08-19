@@ -21,7 +21,7 @@ body {
 /* Header */
 .header {
     background: rgb(131, 206, 70);
-    border-bottom: 1px solid #1e345f;
+    border-bottom: 1px solid #35ac31;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
