@@ -2,41 +2,41 @@
 let schools = [
     {
         id: 1,
-        name: 'Escola Municipal João de Barro',
+        name: 'Escola Adelídia Magno de Oliveira',
         director: 'Maria Souza',
-        students: 320,
-        staff: 25,
-        evasionRate: 3.2,
+        students: 80,
+        staff: 22,
+        evasionRate: 5.2,
         status: 'Ativa',
         neighborhood: 'Itatira/Sede',
         address: 'Rua das Flores, 123 - Centro',
         level: 'Fundamental I',
         phone: '(11) 3456-7890',
-        email: 'joao.barro@edu.sp.gov.br'
+        email: 'adelidia@edu.sp.gov.br'
     },
     {
         id: 2,
-        name: 'Escola Municipal Sol Nascente',
-        director: 'Carlos Almeida',
+        name: 'E.E.E.P João Jackson Lobo Guerra',
+        director: 'Leandro Sales',
         students: 210,
-        staff: 18,
-        evasionRate: 5.0,
+        staff: 30,
+        evasionRate: 2.0,
         status: 'Ativa',
         neighborhood: 'Lagoa do Mato',
         address: 'Av. Principal, 456 - Jardim das Flores',
-        level: 'Fundamental II',
+        level: 'Ensino Médio',
         phone: '(11) 3456-7891',
-        email: 'sol.nascente@edu.sp.gov.br'
+        email: 'Joaojackson@edu.sp.gov.br'
     },
     {
         id: 3,
-        name: 'Escola Municipal Ipê Amarelo',
+        name: 'Escola Antonio Sabino Guerra',
         director: 'Fernanda Lima',
-        students: 450,
+        students: 90,
         staff: 30,
         evasionRate: 2.5,
         status: 'Em reforma',
-        neighborhood: 'Cachoeira',
+        neighborhood: 'Itatira/sede',
         address: 'Rua do Ipê, 789 - Bela Vista',
         level: 'Ensino Médio',
         phone: '(11) 3456-7892',
@@ -52,7 +52,7 @@ let schools = [
         status: 'Ativa',
         neighborhood: 'Bandeira velho',
         address: 'Rua da Esperança, 321 - Vila Nova',
-        level: 'EJA',
+        level: 'infantil',
         phone: '(11) 3456-7893',
         email: 'esperanca@edu.sp.gov.br'
     },
@@ -373,8 +373,8 @@ function handleLogin(e) {
     // Mock authentication
     if (email === 'admin@edu.sp.gov.br' && password === 'admin123') {
         currentUser = { id: 1, name: 'Administrador', email, role: 'admin' };
-    } else if (email === 'editor@edu.sp.gov.br' && password === 'editor123') {
-        currentUser = { id: 2, name: 'Editor', email, role: 'editor' };
+    } else if (email === 'emanoel@educ.gov.br' && password === 'editor123') {
+        currentUser = { id: 2, name: 'Emanoel', email, role: 'Emanoel' };
     } else {
         alert('Email ou senha inválidos');
         return;
