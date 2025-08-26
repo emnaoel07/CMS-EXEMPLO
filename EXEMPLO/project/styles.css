@@ -13,14 +13,17 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 1rem;
 }
-
+.form-group input::placeholder {
+    color: #9ca3af;
+    font-size: 0.75rem;
+}
 /* Header */
 .header {
-    background: rgb(131, 206, 70);
+    background: rgb(245, 245, 245);
     border-bottom: 1px solid #35ac31;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -32,34 +35,73 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 4rem;
+    height: 5rem;
 }
 
+/* Logo Styles - Substitua as regras existentes .logo i */
 .logo {
     display: flex;
     align-items: center;
     gap: 0.75rem;
 }
 
-.logo i {
+.logo img.logtipo {
+    height: 55px; /* Ajuste conforme necessário */
+    width: auto;
+    object-fit: contain;
+}
 
-    color: white;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    font-size: 1.5rem;
+.logo i {
+    display: none; /* Esconde o ícone de graduação */
 }
 
 .logo-text h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.25rem;
     font-weight: 700;
-    color: #fdfeff;
+    color: #1f4163;
+    margin-bottom: 0.1rem;
 }
 
 .logo-text p {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.875rem;
-    color: #ffffff;
+    font-size: 0.75rem;
+    color: #1f4163;
+    line-height: 1.2;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    .logo img.logtipo {
+        height: 40px;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.1rem;
+    }
+    
+    .logo-text p {
+        font-size: 0.7rem;
+    }
+}
+
+/* Ajuste para telas muito pequenas */
+@media (max-width: 480px) {
+    .logo {
+        gap: 0.5rem;
+    }
+    
+    .logo img.logtipo {
+        height: 35px;
+    }
+    
+    .logo-text h1 {
+        font-size: 1rem;
+    }
+    
+    .logo-text p {
+        font-size: 0.65rem;
+    }
 }
 
 .nav {
@@ -73,7 +115,7 @@ body {
     gap: 0.5rem;
     padding: 0.5rem 1rem;
     text-decoration: none;
-    color: #ffffff;
+    color: #41553d;
     border-radius: 0.375rem;
     transition: all 0.2s;
 }
@@ -98,7 +140,7 @@ body {
 
 /* Buttons */
 .btn-primary {
-    background: #2fd31a;
+    background: #4eae39;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -674,6 +716,7 @@ body {
 }
 
 .login-info p {
+    
     font-size: 0.75rem;
     color: #6b7280;
     margin-bottom: 0.25rem;
@@ -764,5 +807,298 @@ body {
 
     .modal-actions {
         flex-direction: column;
+    }
+}
+/* Footer Styles */
+.footer {
+    background: rgb(101, 158, 52);
+    color: white;
+    padding: 2rem 0 1rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.footer-section p {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #e5e7eb;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.social-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+/* Ajuste para o conteúdo principal */
+.main {
+    min-height: calc(100vh - 10rem); /* Ajusta a altura mínima considerando header e footer */
+    padding: 2rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-section p {
+        justify-content: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+/* Image Banner Styles */
+.image-banner {
+    background: linear-gradient(90deg, #f4f4f4);
+    padding: 1.5rem 0;
+    border-top: 4px solid #f59e0b;
+    border-bottom: 4px solid #f59e0b;
+    overflow: hidden;
+    position: relative;
+    margin: 2rem 0;
+}
+
+.image-banner .banner-title {
+    text-align: center;
+    color: rgb(63, 63, 63);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.banner-scroll {
+    overflow: hidden;
+    position: relative;
+    padding: 1rem 0;
+}
+
+.banner-scroll-content {
+    display: flex;
+    animation: scroll-banner 30s linear infinite;
+    gap: 2.5rem;
+    padding: 0 2rem;
+    width: max-content;
+}
+
+.banner-item {
+    height: 230px;
+    flex: 0 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    border: 4px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+
+.banner-item:hover {
+    transform: scale(1.08) translateY(-5px);
+    border-color: #6e9b7f;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.banner-item img {
+    width: 320px;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.banner-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Animação contínua sem cortes */
+@keyframes scroll-banner {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Move metade do conteúdo (a primeira cópia) */
+    }
+}
+
+.banner-scroll:hover .banner-scroll-content {
+    animation-play-state: paused;
+}
+
+/* Efeito de gradiente nas bordas */
+.banner-scroll::before,
+.banner-scroll::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.banner-scroll::before {
+    left: 0;
+    background: linear-gradient(90deg, #dbdbdb 0%, transparent 100%);
+}
+
+.banner-scroll::after {
+    right: 0;
+    background: linear-gradient(90deg, transparent 0%, #dbdbdb 100%);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .banner-item img {
+        width: 280px;
+        height: 140px;
+    }
+    
+    .banner-scroll-content {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .image-banner {
+        padding: 1rem 0;
+        margin: 1.5rem 0;
+    }
+    
+    .image-banner .banner-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .banner-item img {
+        width: 240px;
+        height: 120px;
+    }
+    
+    .banner-scroll-content {
+        gap: 1.5rem;
+        padding: 0 1rem;
+        animation-duration: 25s;
+    }
+    
+    .banner-scroll::before,
+    .banner-scroll::after {
+        width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-banner .banner-title {
+        font-size: 1.1rem;
+        gap: 0.5rem;
+    }
+    
+    .banner-item img {
+        width: 200px;
+        height: 100px;
+    }
+    
+    .banner-scroll-content {
+        gap: 1rem;
+        animation-duration: 20s;
+    }
+    
+    .banner-scroll::before,
+    .banner-scroll::after {
+        width: 60px;
+    }
+}
+
+/* Pausa a animação para usuários que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    .banner-scroll-content {
+        animation: none;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        padding: 1rem;
+        width: 100%;
+    }
+    
+    .banner-item {
+        margin: 0.5rem;
+        flex: 0 0 calc(50% - 1rem);
+        max-width: 280px;
+    }
+    
+    .banner-item img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 2/1;
+    }
+    
+    .banner-scroll::before,
+    .banner-scroll::after {
+        display: none;
     }
 }

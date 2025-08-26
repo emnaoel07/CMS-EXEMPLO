@@ -2,73 +2,93 @@
 let schools = [
     {
         id: 1,
-        name: 'Escola Adelídia Magno de Oliveira',
-        director: 'Maria Souza',
+        name: 'EMEF Adelídia Magno de Oliveira',
+        director: 'Raimundo Nonato Sales do Santos',
         students: 80,
         staff: 22,
-        evasionRate: 5.2,
-        status: 'Ativa',
+        evasionRate: 3.2,
+        status: 'Em reforma',
         neighborhood: 'Itatira/Sede',
-        address: 'Rua das Flores, 123 - Centro',
+        address: 'R. Padre José Laurindo - Centro, Itatira - CE',
         level: 'Fundamental I',
-        phone: '(11) 3456-7890',
-        email: 'adelidia@edu.sp.gov.br'
+        phone: '(88) 98174-6260',
+        email: 'adelidiamagno@yahoo.com.br',
+        latitude: -4.529279120792821,    // EXEMPLO
+        longitude: -39.62238382466763
     },
     {
         id: 2,
-        name: 'E.E.E.P João Jackson Lobo Guerra',
-        director: 'Leandro Sales',
-        students: 210,
+        name: 'EMEF José Paulo de Sousa - CERU',
+        director: 'Maria Elizabete Ribeiro Pinho',
+        students: 80,
         staff: 30,
-        evasionRate: 2.0,
+        evasionRate: 4.0,
         status: 'Ativa',
         neighborhood: 'Lagoa do Mato',
-        address: 'Av. Principal, 456 - Jardim das Flores',
-        level: 'Ensino Médio',
-        phone: '(11) 3456-7891',
-        email: 'Joaojackson@edu.sp.gov.br'
+        address: 'Av. Zezé Jucá, S/N, Lagoa do Mato, Itatira-CE',
+        level: 'Fundamental II',
+        phone: '(88) 3436-1067',
+        email: 'N/T',
+        latitude:   -4.638214052025138,     // EXEMPLO
+        longitude: -39.673404818895165
     },
     {
         id: 3,
-        name: 'Escola Antonio Sabino Guerra',
-        director: 'Fernanda Lima',
+        name: 'EMEF José Pereira',
+        director: 'Francisco Ericlaudio Costa Paula',
         students: 90,
         staff: 30,
         evasionRate: 2.5,
-        status: 'Em reforma',
-        neighborhood: 'Itatira/sede',
-        address: 'Rua do Ipê, 789 - Bela Vista',
-        level: 'Ensino Médio',
+        status: 'Ativa',
+        neighborhood: 'Bandeira',
+        address: 'Bandeira Novo, EMEF José Pereira',
+        level: 'Fundamental II',
         phone: '(11) 3456-7892',
-        email: 'ipe.amarelo@edu.sp.gov.br'
+        email: 'N/T'
     },
     {
         id: 4,
-        name: 'Escola Municipal Esperança',
-        director: 'João Silva',
-        students: 280,
+        name: 'CEI Maria de Fátima Félix',
+        director: 'Maria Elizete Ribeiro Pinto Viana',
+        students: 60,
         staff: 22,
-        evasionRate: 4.1,
+        evasionRate: 2.1,
         status: 'Ativa',
-        neighborhood: 'Bandeira velho',
-        address: 'Rua da Esperança, 321 - Vila Nova',
+        neighborhood: 'Morro branco',
+        address: 'itatira ce, Morro Branco',
         level: 'infantil',
-        phone: '(11) 3456-7893',
-        email: 'esperanca@edu.sp.gov.br'
+        phone: '(88) 3436-1067',
+        email: 'N/T'
     },
     {
         id: 5,
-        name: 'Escola Municipal Futuro Brilhante',
-        director: 'Ana Costa',
-        students: 380,
+        name: 'EMEIF Antônio Gomes de Sousa',
+        director: 'Erandir Pereira',
+        students: 80,
         staff: 28,
         evasionRate: 3.8,
         status: 'Ativa',
-        neighborhood: 'Bandeira Novo',
-        address: 'Av. do Futuro, 654 - Jardim Europa',
+        neighborhood: 'cachoeira',
+        address: 'itatira ce, cachoeira',
         level: 'Fundamental I',
-        phone: '(11) 3456-7894',
-        email: 'futuro.brilhante@edu.sp.gov.br'
+        phone: '(88) 3436-1067',
+        email: 'N/T'
+        
+    },
+    {
+        id: 6,
+        name: 'EMEF Antônio Honorato',
+        director: 'Antônia Amorim Batista',
+        students: 80,
+        staff: 28,
+        evasionRate: 4.8,
+        status: 'Desativada',
+        neighborhood: 'Lagoa do Mato',
+        address: 'Centro, S/N, Lagoa do Mato, Itatira-CE',
+        level: 'Fundamental I',
+        phone: '(88) 3436-1067',
+        email: 'e.m.e.f.antoniohonorato@hotmail.com'
+        
     }
 ];
 
@@ -97,7 +117,27 @@ function setupEventListeners() {
             const page = this.dataset.page;
             showPage(page);
             updateActiveNav(this);
+    
         });
+        document.querySelectorAll('.footer-section a[data-page]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const page = this.dataset.page;
+            showPage(page);
+            
+            // Atualiza a navegação
+            document.querySelectorAll('.nav-link').forEach(navLink => {
+                if (navLink.dataset.page === page) {
+                    navLink.classList.add('active');
+                } else {
+                    navLink.classList.remove('active');
+                }
+            });
+            
+            // Scroll para o topo
+            window.scrollTo(0, 0);
+        });
+    });
     });
 
     // Auth buttons
@@ -371,9 +411,9 @@ function handleLogin(e) {
     const password = document.getElementById('loginPassword').value;
 
     // Mock authentication
-    if (email === 'admin@edu.sp.gov.br' && password === 'admin123') {
+    if (email === 'admin@educ.ce.gov.br' && password === 'admin123') {
         currentUser = { id: 1, name: 'Administrador', email, role: 'admin' };
-    } else if (email === 'emanoel@educ.gov.br' && password === 'editor123') {
+    } else if (email === 'emanoel@educ.ce.gov.br' && password === 'editor123') {
         currentUser = { id: 2, name: 'Emanoel', email, role: 'Emanoel' };
     } else {
         alert('Email ou senha inválidos');
@@ -414,6 +454,8 @@ function openSchoolModal(school = null) {
         document.getElementById('schoolAddress').value = school.address;
         document.getElementById('schoolPhone').value = school.phone || '';
         document.getElementById('schoolEmail').value = school.email || '';
+        document.getElementById('schoolLatitude').value = school.latitude || '';
+        document.getElementById('schoolLongitude').value = school.longitude || '';
     } else {
         form.reset();
     }
@@ -441,7 +483,9 @@ function handleSchoolSubmit(e) {
         level: document.getElementById('schoolLevel').value,
         address: document.getElementById('schoolAddress').value,
         phone: document.getElementById('schoolPhone').value,
-        email: document.getElementById('schoolEmail').value
+        email: document.getElementById('schoolEmail').value,
+        latitude: parseFloat(document.getElementById('schoolLatitude').value) || null,
+        longitude: parseFloat(document.getElementById('schoolLongitude').value) || null
     };
 
     if (editingSchool) {
@@ -473,13 +517,40 @@ function editSchool(id) {
 function viewSchoolDetails(id) {
     const school = schools.find(s => s.id === id);
     if (school) {
+        let mapIframe = '';
+        
+        if (school.latitude && school.longitude) {
+            mapIframe = `
+                <iframe
+                    width="100%"
+                    height="300"
+                    style="border:0; border-radius: 0.5rem; margin-bottom: 1rem;"
+                    loading="lazy"
+                    allowfullscreen
+                    src="https://www.google.com/maps?q=${school.latitude},${school.longitude}&hl=pt&z=15&output=embed">
+                </iframe>
+            `;
+        } else if (school.address) {
+            mapIframe = `
+                <iframe
+                    width="100%"
+                    height="300"
+                    style="border:0; border-radius: 0.5rem; margin-bottom: 1rem;"
+                    loading="lazy"
+                    allowfullscreen
+                    src="https://www.google.com/maps?q=${encodeURIComponent(school.address)}&hl=pt&z=15&output=embed">
+                </iframe>
+            `;
+        }
+
         const detailsHtml = `
+            ${mapIframe}
             <p><strong>Diretor:</strong> ${school.director}</p>
             <p><strong>Alunos:</strong> ${school.students}</p>
             <p><strong>Funcionários:</strong> ${school.staff}</p>
             <p><strong>Taxa de Evasão:</strong> ${school.evasionRate}%</p>
             <p><strong>Status:</strong> ${school.status}</p>
-            <p><strong>Bairro:</strong> ${school.neighborhood}</p>
+            <p><strong>localidade:</strong> ${school.neighborhood}</p>
             <p><strong>Nível:</strong> ${school.level}</p>
             <p><strong>Endereço:</strong> ${school.address}</p>
             <p><strong>Telefone:</strong> ${school.phone || '-'}</p>
@@ -491,6 +562,8 @@ function viewSchoolDetails(id) {
         document.getElementById("schoolDetailsModal").classList.add("active");
     }
 }
+
+
 
 function closeSchoolDetails() {
     document.getElementById("schoolDetailsModal").classList.remove("active");
@@ -504,3 +577,23 @@ function exportData() {
 function closeModal(modal) {
     modal.classList.remove('active');
 }
+// Adicione isso na função setupEventListeners()
+document.querySelectorAll('.footer-section a[data-page]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const page = this.dataset.page;
+        showPage(page);
+        
+        // Atualiza a navegação
+        document.querySelectorAll('.nav-link').forEach(navLink => {
+            if (navLink.dataset.page === page) {
+                navLink.classList.add('active');
+            } else {
+                navLink.classList.remove('active');
+            }
+        });
+        
+        // Scroll para o topo
+        window.scrollTo(0, 0);
+    });
+});

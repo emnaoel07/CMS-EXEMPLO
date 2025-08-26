@@ -14,7 +14,7 @@
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-graduation-cap"></i>
-                       <img src="logotipo-sme.png" alt="">
+                       <img class="logtipo" src="logotipo-sme.png" alt="">
                     <div class="logo-text">
                         <h1>Portal de Escolas</h1>
                         <p>Secretaria Municipal de Educação</p>
@@ -92,7 +92,7 @@
                             <div class="stat-info">
                                 <h3>Funcionários</h3>
                                 <div class="stat-value" id="totalStaff">0</div>
-                                <div class="stat-subtitle">Professores e staff</div>
+                                <div class="stat-subtitle">Professores e Servidores Publicos</div>
                             </div>
                             <div class="stat-icon">
                                 <i class="fas fa-user-tie"></i>
@@ -168,7 +168,7 @@
                     <h3><i class="fas fa-filter"></i> Filtros</h3>
                     <div class="filters-grid">
                         <div class="filter-group">
-                            <label>Bairro</label>
+                            <label>Localidade</label>
                             <select id="neighborhoodFilter">
                                 <option value="">Todos</option>
                             </select>
@@ -243,13 +243,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Bairro *</label>
+                        <label>Localidade *</label>
                         <select id="schoolNeighborhood" required>
                             <option value="itatira/sede">Itatira/sede</option>
                             <option value="lagoa do mato">lagoa do mato</option>
                             <option value="cachoeira">cachoeira</option>
-                            <option value="Bandeira velho">Bandeira velho</option>
-                            <option value="Bandeira Novo">Bandeira Novo</option>
+                            <option value="Morro branco">Morro Branco</option>
+                            <option value="Bandeira">Bandeira</option>
+                            
                         </select>
                     </div>
                     <div class="form-group">
@@ -261,6 +262,7 @@
                             <option value="infantil">infantil</option>
                         </select>
                     </div>
+                    
                     <div class="form-group full-width">
                         <label>Endereço *</label>
                         <input type="text" id="schoolAddress" required>
@@ -273,6 +275,15 @@
                         <label>E-mail</label>
                         <input type="email" id="schoolEmail">
                     </div>
+                    <div class="form-group">
+  <label>Latitude</label>
+  <input type="number" step="any" id="schoolLatitude">
+</div>
+<div class="form-group">
+  <label>Longitude</label>
+  <input type="number" step="any" id="schoolLongitude">
+</div>
+
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn-secondary" onclick="closeSchoolModal()">
@@ -306,8 +317,8 @@
                 </div>
                 <div class="login-info">
                     <p><strong>Credenciais de teste:</strong></p>
-                    <p>Admin: admin@edu.sp.gov.br / admin123</p>
-                    <p>Editor: emanoel@edu.gov.br / editor123</p>
+                    <p>Admin: admin@educ.ce.gov.br / admin123</p>
+                    <p>Editor: emanoel@educ.ce.gov.br / editor123</p>
                 </div>
                 <div class="modal-actions">
                     <button type="submit" class="btn-primary full-width">
@@ -327,11 +338,102 @@
       </button>
     </div>
     <div class="modal-body" id="schoolDetailsBody">
-      <!-- Conteúdo será preenchido dinamicamente -->
     </div>
   </div>
 </div>
 
+    <!-- Image News Banner -->
+    <div class="image-banner">
+        <div class="banner-title">
+            <i class="fas fa-images"></i>
+            <span>Destaques</span>
+        </div>
+        <div class="banner-scroll">
+            <div class="banner-scroll-content">
+                <!-- Primeira cópia das imagens (necessária para animação contínua) -->
+                <div class="banner-item">
+                    <img src="https://www.maracanau.ce.gov.br/wp-content/uploads/2022/11/spaece.jpg" alt="Spaece">
+                </div>
+                <div class="banner-item">
+                    <img src="https://img.freepik.com/vetores-premium/projeto-de-modelo-de-banner-de-educacao_704355-255.jpg?w=2000" alt="Reformas">
+                </div>
+                <div class="banner-item">
+                    <img src="https://img.freepik.com/vetores-gratis/modelo-de-banner-horizontal-gradiente-dia-internacional-da-educacao_23-2150011981.jpg?w=1380&t=st=1676397703~exp=1676398303~hmac=b6d175032dcdb54cc2c92f937e547182bf6b906583fe7a7007974ef75cfc830d" alt="Noticias">
+                </div>
+                <div class="banner-item">
+                    <img src="https://img.freepik.com/vector-gratis/conjunto-coleccion-popular-tercios-inferiores-redes-sociales_1035-18070.jpg?w=740&t=st=1711643359~exp=1711643959~hmac=1a6e1229dc48d3dfbe19ef98ab44547d271bcac78d0cb65846165b096cd0819a" alt="Redes">
+                </div>
+                <div class="banner-item">
+                    <img src="caminho/para/sua/imagem5.jpg" alt="Destaque 5">
+                </div>
+                <div class="banner-item">
+                    <img src="caminho/para/sua/imagem6.jpg" alt="Destaque 6">
+                </div>
+                
+                <!-- Segunda cópia idêntica (para efeito contínuo) -->
+                <div class="banner-item">
+                    <img src="https://www.maracanau.ce.gov.br/wp-content/uploads/2022/11/spaece.jpg" alt="Spaece">
+                </div>
+                <div class="banner-item">
+                    <img src="https://img.freepik.com/vetores-premium/projeto-de-modelo-de-banner-de-educacao_704355-255.jpg?w=2000" alt="Reformas">
+                </div>
+                <div class="banner-item">
+                    <img src="https://img.freepik.com/vetores-gratis/modelo-de-banner-horizontal-gradiente-dia-internacional-da-educacao_23-2150011981.jpg?w=1380&t=st=1676397703~exp=1676398303~hmac=b6d175032dcdb54cc2c92f937e547182bf6b906583fe7a7007974ef75cfc830d" alt="Noticias">
+                </div>
+                <div class="banner-item">
+                    <img src="https://img.freepik.com/vector-gratis/conjunto-coleccion-popular-tercios-inferiores-redes-sociales_1035-18070.jpg?w=740&t=st=1711643359~exp=1711643959~hmac=1a6e1229dc48d3dfbe19ef98ab44547d271bcac78d0cb65846165b096cd0819a" alt="Redes">
+                </div>
+                <div class="banner-item">
+                    <img src="caminho/para/sua/imagem5.jpg" alt="Destaque 5">
+                </div>
+                <div class="banner-item">
+                    <img src="caminho/para/sua/imagem6.jpg" alt="Destaque 6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Portal de Escolas</h4>
+                    <p>Sistema de gestão e transparência da rede municipal de educação</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone"></i> (88) 3434-0000</p>
+                    <p><i class="fas fa-envelope"></i> contato@educacao.it.gov.br</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Secretaria de Educação, Itatira - CE</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home" data-page="home">Início</a></li>
+                        <li><a href="#schools" data-page="schools">Escolas</a></li>
+                        <li><a href="#">Documentação</a></li>
+                        <li><a href="#">Ajuda</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Conecte-se</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Emanoel Carlos Farias Lima. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
