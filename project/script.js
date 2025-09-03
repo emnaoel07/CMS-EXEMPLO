@@ -666,10 +666,10 @@ const transportData = {
                 { time: "06:45", stop: "EMEF Adelídia Magno de Oliveira" }
             ],
             coordinates: [
-                [-4.529279, -39.622384], // Escola
-                [-4.528000, -39.620000], // Ponto 1
-                [-4.527000, -39.621000], // Ponto 2
-                [-4.526000, -39.622000]  // Ponto 3
+                [-4.5294322617043, -39.62256922681419], // Escola
+                [-4.529897464073854, -39.62431055985069], // Ponto 1
+                [-4.5316161258249075, -39.62504079623187], // Ponto 2
+                [-4.531873453323848, -39.62504051331534]  // Ponto 3
             ],
             responsible: "Motorista: João Silva - (88) 99999-9999"
         },
@@ -687,9 +687,9 @@ const transportData = {
                 { time: "07:00", stop: "EMEF José Paulo de Sousa - CERU" }
             ],
             coordinates: [
-                [-4.638214, -39.673405], // Escola
-                [-4.637000, -39.672000], // Ponto 1
-                [-4.636000, -39.673000]  // Ponto 2
+                [-4.651380221308887, -39.67057492076992], // Escola
+                [-4.651273286277247, -39.676196830775346], // Ponto 1
+                [-4.648606299100915, -39.67647206958548]  // Ponto 2
             ],
             responsible: "Motorista: Maria Santos - (88) 98888-8888"
         },
@@ -730,6 +730,29 @@ const transportData = {
                 [-4.602000, -39.652000]  // Ponto 2
             ],
             responsible: "Motorista: Francisco Silva - (88) 97777-7777"
+        },
+        {
+            id: 5,
+            name: "Rota Itatira/Lagoa do Mato - Todos os Turnos",
+            schoolId: 3,
+            schoolName: "EMEF José Pereira9",
+            neighborhood: "Itatira",
+            shift: "Todos os Turnos",
+            schedule: [
+                { time: "12:30", stop: "Centro do Bairro" },
+                { time: "12:45", stop: "Escola Municipal" },
+                { time: "13:00", stop: "EMEF José Pereira" }
+            ],
+            coordinates: [
+                [-4.638313882473267, -39.67349074129679], // Escola (aproximado)
+                [-4.590622071844314, -39.649131563514736],
+                [-4.586728475424856, -39.64509149814919],
+                [-4.580646842090787, -39.6428878261268], // Ponto 1
+                [-4.530706018965982, -39.62496105574707],  // Ponto 2
+                [-4.5296420846496686, -39.623029602006014]
+                
+            ],
+            responsible: "Motorista: Francisco Silva - (88) 97777-7777"
         }
     ]
 };
@@ -737,18 +760,28 @@ const transportData = {
 // Renderiza a lista de rotas
 function renderTransportRoutes(routes) {
     const routesList = document.getElementById("routesList");
+    const routesCount = document.getElementById("routesCount");
+
+    routesCount.textContent = `${routes.length} rota${routes.length !== 1 ? 's' : ''}`;
 
     if (!routes.length) {
-        routesList.innerHTML = `<p>Nenhuma rota encontrada</p>`;
+        routesList.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-route"></i>
+                <p>Nenhuma rota encontrada</p>
+            </div>
+        `;
         return;
     }
 
     routesList.innerHTML = routes.map(route => `
-        <div class="route-item">
+        <div class="route-item" onclick="showRouteOnMap(${route.id})">
             <h4>${route.name}</h4>
             <p><strong>Escola:</strong> ${route.schoolName}</p>
-            <p><strong>Turno:</strong> ${route.shift}</p>
-            <button onclick="showRouteOnMap(${route.id})">Ver no mapa</button>
+            <p><strong>Turno:</strong> ${route.shift === 'manha' ? 'Manhã' : 
+                                       route.shift === 'tarde' ? 'Tarde' : 
+                                       route.shift === 'noite' ? 'Noite' : route.shift}</p>
+            <p><strong>Localidade:</strong> ${route.neighborhood}</p>
         </div>
     `).join('');
 }

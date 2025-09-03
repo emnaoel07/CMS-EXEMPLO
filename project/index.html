@@ -208,10 +208,10 @@
         </div>
         
        <!-- Nova página de Transporte -->
-<div id="transportPage" class="page transport-page">
+    <div id="transportPage" class="page transport-page">
 
-  <div class="container">
-    <h2>Transporte Escolar</h2>
+    <div class="container">
+        <h2>Transporte Escolar</h2>
     <p>Informações sobre rotas, horários e pontos de embarque</p>
 
     <div class="card filters-card">
@@ -241,22 +241,20 @@
   </div>
 </div>
 
-
     <!-- Conteúdo -->
     <div id="transportContent">
-      <div class="transport-container">
-        <div id="routesList" class="routes-list"></div>
+        <div class="transport-container">
+            <div class="routes-container">
+                <div class="routes-header">
+                    <h4><i class="fas fa-route"></i> Rotas Disponíveis</h4>
+                    <span class="routes-count" id="routesCount">0 rotas</span>
+                </div>
+        <div id="routesList" class="routes-list scrollable"></div>
+            </div>
         <div id="transportMap" class="map-container"></div>
-      </div>
-      <div id="routeDetails" class="route-details-panel"></div>
-    </div>
-  </div>
-</div>
-
-
+        </div>
 
     </main>
-
     <!-- School Modal -->
     <div id="schoolModal" class="modal">
         <div class="modal-content">
@@ -330,13 +328,13 @@
                         <input type="email" id="schoolEmail">
                     </div>
                     <div class="form-group">
-  <label>Latitude</label>
-  <input type="number" step="any" id="schoolLatitude">
-</div>
-<div class="form-group">
-  <label>Longitude</label>
-  <input type="number" step="any" id="schoolLongitude">
-</div>
+                        <label>Latitude</label>
+                        <input type="number" step="any" id="schoolLatitude">
+                    </div>
+                    <div class="form-group">
+                        <label>Longitude</label>
+                        <input type="number" step="any" id="schoolLongitude">
+                    </div>
 
                 </div>
                 <div class="modal-actions">
